@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['posts' => $posts]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::get('/dashboard', [PostController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/post', function () {
     return view('post');
 });
@@ -37,9 +39,9 @@ Route::get('/create-post', function () {
     return view('create-post');
 });
 
-Route::get('/your-post', function () {
+Route::get('/your-posts', function () {
     $posts = Post::where('user_id', auth()->id())->get();
-    return view('your-post', ['posts' => $posts]);
+    return view('your-posts', ['posts' => $posts]);
 });
 
 // Profile Routes 
@@ -58,3 +60,6 @@ Route::get('/post/{id}', [PostController::class, 'post']);
 Route::get('/edit-post/{post}', [PostController::class, 'editPost']);
 Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
 Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
+
+//Search in Dashboard
+Route::get('/search', [PostController::class, 'search']);

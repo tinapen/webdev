@@ -1,59 +1,5 @@
 <x-app-layout>
-    <aside
-    id="logo-sidebar"
-    class="fixed left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-    aria-label="Sidebar"
-  >
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-      <ul class="space-y-2 font-medium">
-        <li>
-          <a
-            href="/dashboard"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-          >
-            <svg
-              class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              aria-hidden="true"
-              xmlns=""
-              fill="currentColor"
-              viewBox="0 0 22 21"
-            ></svg>
-            <span class="ms-3">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/create-post"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-          >
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              aria-hidden="true"
-              xmlns=""
-              fill="currentColor"
-              viewBox="0 0 18 18"
-            ></svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Create Post</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/your-post"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-          >
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-              aria-hidden="true"
-              xmlns=""
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            ></svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Your Posts</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-</aside>
+@include('layouts.aside')
 <div class="p-4 sm:ml-64 dark:bg-gray-900 min-h-[100vh]">
     <div class="p-4 mt-12">
       <x-flash-message />
@@ -93,7 +39,7 @@
             id="post_caption"
             class="my-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Type your caption for your image..."
-            required
+            {{-- required --}}
           />
           <div
             class="w-full mb-4 my-6 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600"

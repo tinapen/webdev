@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('post_title');
             $table->string('post_image')->nullable();
-            $table->text('post_caption');
+            $table->text('post_caption')->nullable();
             $table->string('tags');
             $table->longText('post_content');
-            $table->foreignId('user_id')->constrained();  
-            $table->timestamps();  
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

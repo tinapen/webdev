@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>WEBDEV</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -23,7 +23,7 @@
         <nav  class="fixed inset-x-0 top-0 z-30 border-gray-200 dark:bg-slate-900">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div> 
-                <h1 class="font-sans antialiased font-semibold text-gray-900 dark:text-white">WEBDEV</h1>
+                <h1 class="font-sans antialiased font-bold text-gray-900 dark:text-white">web.dev</h1>
             </div>
                 @if (Route::has('login'))
                 <div class="">
@@ -108,8 +108,8 @@
               class="mt-10 text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl"
             >
               Information
-              <span class="text-blue-400">Technology</span> Web
-              <span class="text-blue-400">Development</span>
+              <span class="text-blue-600">Technology</span> Web
+              <span class="text-blue-600">Development</span>
             </h1>
             <p class="mt-6 text-lg leading-8 text-gray-900 dark:text-white">
               Read and post about latest trends in technologies and web
@@ -118,7 +118,7 @@
             <div class="mt-5 flex items-center justify-center gap-x-6">
               <a
                 href={{route('login')}}
-                class="rounded-md bg-blue-700 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+                class="rounded-md bg-blue-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
                 rel="noreferrer"
                 >Start reading →</a
               >
@@ -134,7 +134,7 @@
               <a href="https://flowbite.com/" class="flex items-center">
                 <span
                   class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                  >WEBDEV</span
+                  >web.dev</span
                 >
               </a>
             </div>
