@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,13 @@ Route::get('/your-posts', function () {
     return view('your-posts', ['posts' => $posts]);
 });
 
+Route::get('/bookmark', function () {
+    return view('bookmark');
+});
+
+Route::get('/feedback', function () {
+    return view('feedback');
+});
 // Profile Routes 
 
 Route::middleware('auth')->group(function () {
@@ -57,9 +65,12 @@ require __DIR__ . '/auth.php';
 //Posts Routes
 Route::post('/create-post', [PostController::class, 'createPost']);
 Route::get('/post/{id}', [PostController::class, 'post']);
-Route::get('/edit-post/{post}', [PostController::class, 'editPost']);
-Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
-Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
+Route::get('/edit-post/{post}', [PostController::class, 'editPost'])->middleware(['auth', 'verified'])->name('edit-post');
+Route::put('/edit-post/{post}', [PostController::class, 'updatePost'])->middleware(['auth', 'verified'])->name('edit-post');
+Route::delete('/delete-post/{post}', [PostController::class, 'deletePost'])->middleware(['auth', 'verified']);
 
 //Search in Dashboard
 Route::get('/search', [PostController::class, 'search']);
+
+//Feedback Routes
+Route::post('/feedback', [FeedbackController::class, 'sendFeedback']);

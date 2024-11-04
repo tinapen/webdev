@@ -1,12 +1,12 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Profile Picture -->
-        {{-- <x-picture-input /> --}}
+        <x-user_image />
 
         <!--First Name -->
-        <div>
+        <div class="mt-4">
             <x-input-label for="firstname" :value="__('First Name')" />
             <x-text-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('fname')" required autofocus autocomplete="fname" />
             <x-input-error :messages="$errors->get('firstname')" class="mt-2" />

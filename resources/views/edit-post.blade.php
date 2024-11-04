@@ -7,11 +7,11 @@
       @csrf
       @method('PUT')
       <div class="flex">
-        <img
-          class="w-8 h-8 rounded-full"
-          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-          alt="user photo"
-        />
+        @if(Auth::user()->user_image) 
+          <img src="{{asset('storage/' . Auth::user()->user_image)}}" alt="user_image" class="w-10 h-10 p-1 rounded-full"> :
+          @else
+          <x-avatar />
+          @endif
         <p class="text-gray-900 dark:text-white mx-4">{{ Auth::user()->firstname }}</p>
       </div>
       <h1 class="text-gray-900 text-center dark:text-white mx-4">

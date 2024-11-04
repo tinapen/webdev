@@ -3,20 +3,21 @@
 <div class="p-4 sm:ml-64 dark:bg-gray-900 min-h-[100vh]">
     <div class="p-4 mt-12">
       <x-flash-message />
-      <form action="/create-post" method="POST" enctype="multipart/form-data" class="mx-64 py-14">
+      <form action="/create-post" method="POST" enctype="multipart/form-data" class="mx-60 py-12">
         @csrf
-        <div class="flex">
-          <img
-            class="w-8 h-8 rounded-full"
-            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-            alt="user photo"
-          />
-          <p class="text-gray-900 dark:text-white mx-4">{{ Auth::user()->firstname }}</p>
+        <div class="flex items-center">
+          @if(Auth::user()->user_image) 
+          <img src="{{asset('storage/' . Auth::user()->user_image)}}" alt="user_image" class="w-20 h-20 p-1 rounded-full">
+          @else
+          <x-avatar />
+          @endif
+          <p class="text-gray-900  dark:text-white mx-4">{{Str::ucfirst(Auth::user()->firstname . ' ' . Auth::user()->lastname)}}</p>
         </div>
-        <h1 class="text-gray-900 text-center dark:text-white mx-4">
+        <h1 class="text-gray-900 text-center text-xl mx-4 uppercase font-bold dark:text-white ">
           Create Post
         </h1>
         <div class="my-4">
+          
           <input
             type="text"
             name="post_title"
@@ -28,12 +29,13 @@
         </div>
         <div class="my-4">
           <div class="w-full">
-          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="post_image">Upload file</label>
+          <p class="mt-1 text-sm italic text-gray-500 dark:text-gray-300" id="file_input_help">Upload your post image here.</p>
           <input name="post_image" id="post_image" type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help">
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
-          </label>
+          
+          
           </div>
-          <input
+          <div class="my-8">
+            <input
             type="text"
             name="post_caption"
             id="post_caption"
@@ -41,12 +43,15 @@
             placeholder="Type your caption for your image..."
             {{-- required --}}
           />
+          </div>
           <div
-            class="w-full mb-4 my-6 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+            class="w-full mb-4 my-8 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
           >
+          
             <div
               class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600"
             >
+            
               <input
                 type="text"
                 name="tags"
