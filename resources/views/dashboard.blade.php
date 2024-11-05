@@ -1,5 +1,5 @@
 <x-app-layout>
-  @include('layouts.aside')
+  @include('layouts.sidebar')
   <div class="p-4 sm:ml-64 dark:bg-gray-900  min-h-[100vh]">
     <div class="p-4 mt-20">
       <x-flash-message />
@@ -59,8 +59,8 @@
               />
               </svg>
             </a>
-            <div class='w-6/12 justify-items-end'>
-              <x-bookmark-icon />
+            <div class='w-20 ps-28'>
+                <x-bookmark-icon/>
             </div>
           </div>
         </div>

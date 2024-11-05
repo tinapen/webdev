@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include('layouts.aside')
+    @include('layouts.sidebar')
     
         <div class="py-8 lg:py-32 px-60 mx-auto max-w-full sm:ml-64 bg-white dark:bg-gray-900  min-h-[100px]">
             <x-flash-message />
