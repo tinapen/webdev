@@ -18,8 +18,8 @@
         @method('patch')
             <div>
                 <div class="flex items-center" x-data="imagePreview()">
-                    <div class='w-25 h-25 rounded-full bg-gray-500 mr-2'>
-                        <img id="preview" src="{{asset('storage/' . Auth::user()->user_image)}}" alt="user-image" class="w-24 h-24 rounded-full  bg-gray-500">
+                    <div class='w-25 h-25 rounded-full border border-blue-600 bg-gray-500 mr-2'>
+                        <img id="preview" src="{{asset('storage/' . Auth::user()->user_image)}}" alt="user-image" class="w-24 h-24 rounded-full border border-blue-600 bg-gray-500">
                     </div>
                     <div>
                         <x-secondary-button @click="document.getElementById('user_image').click()" class='relative'>
