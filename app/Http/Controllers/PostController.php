@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 
 {
+    // Your Posts Page
+    public function yourPosts(Post $posts)
+    {
+
+        $posts = Post::where('user_id', auth()->id())->get();
+        return view('your-posts', ['posts' => $posts]);
+    }
+
+    // Create Post Page
+    public function createPosts()
+    {
+        return view('create-post');
+    }
+
+
     // Create Post Function 
     public function createPost(Request $request)
     {
@@ -76,10 +91,10 @@ class PostController extends Controller
         return redirect('/dashboard')->with('message', 'Post deleted successfully');
     }
 
-    // Search Function 
-    public function search(Request $request)
+    // Search Post in Dashboard Function 
+    public function searchInDashboard(Request $request)
     {
-        $term = $request->input('search');
+        $term = $request->input('searchindashboard');
         if ($term) {
 
             $posts = DB::table('posts')->where('post_title', 'like', '%' . $term . '%')
@@ -89,7 +104,24 @@ class PostController extends Controller
 
             return view('/dashboard', compact('posts'));
         } else {
-            return redirect('/search')->with('message', 'Search term cannot be found.');
+            return redirect('/dashboard')->with('message', 'Search term cannot be found.');
+        }
+    }
+
+    // Search Post in Your Posts Function 
+    public function searchInYourPosts(Request $request)
+    {
+        $term = $request->input('searchinyourposts');
+        if ($term) {
+
+            $posts = DB::table('posts')->where('post_title', 'like', '%' . $term . '%')
+                ->orwhere('post_caption', 'like', '%' . $term . '%')
+                ->orwhere('tags', 'like', '%' . $term . '%')
+                ->orwhere('post_content', 'like', '%' . $term . '%')->get();
+
+            return view('/your-posts', compact('posts'));
+        } else {
+            return redirect('/your-posts')->with('message', 'Search term cannot be found.');
         }
     }
 }

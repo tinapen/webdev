@@ -19,7 +19,7 @@
             return {
                 showPreview: (event) => {
                    if (event.target.files.length > 0) {
-                    let src = URL.createObjectURL(event.target.files[0])
+                    const src = URL.createObjectURL(event.target.files[0])
                     document.getElementById('preview').src = src;
                    } 
                 }

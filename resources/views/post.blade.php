@@ -9,20 +9,34 @@
     class="pt-20 px-4 flex h-40 border border-gray-200 dark:border-gray-700"
   >
     @if($post->user->user_image) 
-    <img src="{{asset('storage/' . $post->user->user_image)}}" alt="user_image" class="w-12 h-12 rounded-full ml-3 mt-1"> :
+    <img src="{{asset('storage/' . $post->user->user_image)}}" alt="user_image" class="w-12 h-12 rounded-full ml-3 mt-1">
     @else
     <x-avatar />
     @endif
     <div>
       <p class="ml-3 dark:text-white">{{$post->user->firstname . " " . $post->user->lastname}}</p>
-      <p class="ml-3 dark:text-white">Posted on October 17, 2024</p>
+      <p class="ml-3 dark:text-white">Posted on {{$post->created_at}}</p>
     </div>
     
   </div>
   <div id="action-field" class="flex justify-end p-4 border border-gray-200 dark:border-gray-700">
-          <span type="button" class="me-auto px-2 flex text-gray-900 dark:text-gray-100 text-xs font-bold items-center rounded-md border border-gray-900 dark:border-gray-100 dark:hover:text-gray-500 cursor-pointer">
-            <x-bookmark-icon /> Bookmark
+          
+      @if (auth()->user()->bookmarkedPosts->contains($post->id))
+      <form action="{{ route('post.unbookmark', $post) }}" method="POST" class="me-auto">
+          @csrf
+          @method('DELETE')
+          <span type="button" class="px-2 flex text-gray-900 dark:text-gray-100 text-md font-bold items-center rounded-md dark:hover:text-gray-500 cursor-pointer">
+          <x-bookmark-icon-filled /> UNBOOKMARK
           </span>
+      </form>
+      @else
+      <form action="{{ route('post.bookmark', $post) }}" method="POST" class="me-auto">
+          @csrf
+          <span type="button" class="px-2 flex text-gray-900 dark:text-gray-100 font-bold text-md items-center rounded-md dark:hover:text-gray-500 cursor-pointer">
+            <x-bookmark-icon-unfilled /> BOOKMARK
+            </span>
+      </form>
+      @endif
         {{-- Check if the logged-in user is the author of the post --}}
           @auth
           @if(Auth::user()->id === $post->user_id)

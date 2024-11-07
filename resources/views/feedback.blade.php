@@ -3,8 +3,8 @@
     
         <div class="py-8 lg:py-32 px-60 mx-auto max-w-full sm:ml-64 bg-white dark:bg-gray-900  min-h-[100px]">
             <x-flash-message />
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Make web.dev better!</h2>
-            <p class="mb-8 lg:mb-16 font-light text-sm text-center text-gray-900 dark:text-white sm:text-xl">Got a technical issue? Want to send feedback about our website? Have a suggestion for a new feature ? Let us know by filling out the form below or you can email us at <span class="text-blue-500"><a href="#" class='hover:underline focus:underline decoration-blue-500'>supportcenter@web.dev</a></span>.</p>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Make webdev better!</h2>
+            <p class="mb-8 lg:mb-16 font-light text-sm text-center text-gray-900 dark:text-white sm:text-xl">Got a technical issue? Want to send feedback about our website? Have a suggestion for a new feature ? Let us know by filling out the form below or you can email us at <span class="text-blue-500"><a href="#" class='hover:underline focus:underline decoration-blue-500'>supportcenter@webdev.com</a></span>.</p>
             <form action="/feedback" method="POST" class="space-y-8">
                 @csrf
                 <div>

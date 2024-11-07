@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    public function feedbackView()
+    {
+        return view("feedback");
+    }
     // Create Feedback Function 
     public function sendFeedback(Request $request)
     {

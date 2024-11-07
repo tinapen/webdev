@@ -1,57 +1,58 @@
 <x-app-layout>
-  @include('layouts.sidebar')
-  <div class="p-4 sm:ml-64 dark:bg-gray-900  min-h-[100vh]">
-    <div class="p-4 mt-20">
-      <div>
-        <form action="{{url('searchindashboard')}}" method="GET" class="mb-10 w-full mx-auto">
-          @csrf
-          <label
-          for="default-search"
-          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >Search</label
-          >
-          <div class="relative">
-          <div
-              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
-          >
-              <svg
-              class="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-              >
-              <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-              </svg>
-          </div>
-          <input
-              type="search"
-              name="searchindashboard"
-              id="searchindashboard"
-              value="{{Request::get('searchindashboard')}}"
-              class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search"
-              required
-          />
-          <button
-              type="submit"
-              class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-              Search
-          </button>
-          </div>
-          <x-flash-message />
-      </form>
-      </div>
-      <x-flash-message />
-      <div class="grid grid-cols-4 gap-7 mb-4">
-        @foreach($posts as $post)
+    @include('layouts.sidebar')
+    <div class="p-4 sm:ml-64 dark:bg-gray-900  min-h-[100vh]">
+        <div class="p-4 mt-20">
+         <div>
+          <form action="{{url('/search-bookmark')}}" method="GET" class="mb-10 w-auto mx-auto">
+            @csrf
+            <label
+            for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >Search</label
+            >
+            <div class="relative">
+            <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+                <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+                >
+                <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+                </svg>
+            </div>
+            <input
+                type="search"
+                name="search-bookmark"
+                id="search-bookmark"
+                value="{{Request::get('search-bookmark')}}"
+                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search"
+                required
+            />
+            <button
+                type="submit"
+                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+                Search
+            </button>
+            </div>
+        </form>
+         </div>
+        @if($bookmarkedPosts->count() == 0)
+        <p class="text-gray-900 dark:text-gray-100 text-lg font-bold text-center">You have no bookmarked posts.</p>
+    @else
+    <div class="grid grid-cols-4 gap-4 mb-4">
+        @foreach($bookmarkedPosts as $post)
         <div
           class="block max-w-sm bg-white border border-gray-200 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700 dark:text-white">
           <div class="relative overflow-hidden bg-cover bg-no-repeat">
@@ -67,7 +68,7 @@
               $tags = (explode(' ', $str))
               @endphp
               @foreach($tags as $tag)
-              <a href="/dashboard/?tags={{$tag}}" id='tags' class="inline-flex p-2 w-fit rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-white text-xs">
+              <a href="/bookmarks/?tags={{$tag}}" id='tags' class="inline-flex p-2 w-fit rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-white text-xs">
               {{$tag}}
               </a>
               @endforeach
@@ -108,7 +109,7 @@
             </a>
             <div class='w-20 ps-28'>
               @if (auth()->user()->bookmarkedPosts->contains($post->id))
-              <form action="{{ route('post.unbookmark', $post->id) }}" method="POST">
+              <form action="{{ route('post.unbookmark', $post) }}" method="POST">
                   @csrf
                   @method('DELETE')
                   <span type="button" class=" dark:hover:text-gray-500 cursor-pointer">
@@ -116,7 +117,7 @@
                   </span>
               </form>
               @else
-              <form action="{{ route('post.bookmark', $post->id) }}" method="POST">
+              <form action="{{ route('post.bookmark', $post) }}" method="POST">
                   @csrf
                   <span type="button" class="dark:border-gray-100 dark:hover:text-gray-500 cursor-pointer">
                     <x-bookmark-icon-unfilled />
@@ -129,6 +130,7 @@
         </div>
         @endforeach
       </div>
+    @endif
+        </div>
     </div>
-  </div>
 </x-app-layout>

@@ -23,7 +23,7 @@
         <nav  class="fixed inset-x-0 top-0 z-30 border-gray-200 dark:bg-slate-900">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div> 
-                <h1 class="font-sans antialiased font-bold text-gray-900 dark:text-white">web.dev</h1>
+                <h1 class="font-sans antialiased font-bold text-gray-900 dark:text-white">WEBDEV</h1>
             </div>
                 @if (Route::has('login'))
                 <div class="">
@@ -117,7 +117,14 @@
             </p>
             <div class="mt-5 flex items-center justify-center gap-x-6">
               <a
-                href={{route('login')}}
+                {{-- href={{route('login')}} --}}
+                @if (Route::has('login'))
+                @auth
+                    href={{route('dashboard')}}
+                  @else
+                    href={{route('login')}}
+                @endauth
+                @endif
                 class="rounded-md bg-blue-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
                 rel="noreferrer"
                 >Start reading →</a
@@ -131,10 +138,10 @@
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
+              <a href="https://webdev.com/" class="flex items-center">
                 <span
                   class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                  >web.dev</span
+                  >WEBDEV</span
                 >
               </a>
             </div>
@@ -149,8 +156,8 @@
                   <li class="mb-4">
                     <a href="login.html" class="hover:underline">About Us</a>
                   </li>
-                  <li>
-                    <a href="sign up.html" class="hover:underline">Contact Us</a>
+                  <li class="mb-4">
+                    <a href="login.html" class="hover:underline">Contact Us</a>
                   </li>
                 </ul>
               </div>
@@ -165,9 +172,7 @@
                     <a href="https://github.com" class="hover:underline"
                       >Github</a
                     >
-                  </li>
-                  <li>
-                    <a href="https://facebook.com" class="hover:underline"
+                    <a href="https://github.com" class="hover:underline"
                       >Facebook</a
                     >
                   </li>
@@ -197,7 +202,7 @@
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-50"
               >© 2024
               <a href="https://flowbite.com/" class="hover:underline"
-                >| Wed.dev | WD103P | Capstone Project</a
+                >| WEBDEV| WD103P | Capstone Project</a
               >. All Rights Reserved.
             </span>
             <div class="flex mt-4 sm:justify-center sm:mt-0">

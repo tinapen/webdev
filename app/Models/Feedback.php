@@ -16,4 +16,9 @@ class Feedback extends Model
         'message',
         'user_id',
     ];
+
+    public function userFeedback()
+    {
+        return $this->hasMany(Feedback::class, 'user_id');
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\FeedbackController;
 
 /*
@@ -36,22 +37,11 @@ Route::get('/post', function () {
     return view('post');
 });
 
-Route::get('/create-post', function () {
-    return view('create-post');
-});
+Route::get('/create-post', [PostController::class, 'createPosts'])->name('create-post');
 
-Route::get('/your-posts', function () {
-    $posts = Post::where('user_id', auth()->id())->get();
-    return view('your-posts', ['posts' => $posts]);
-});
+Route::get('/your-posts', [PostController::class, 'yourPosts'])->name('your-posts');
 
-Route::get('/bookmark', function () {
-    return view('bookmark');
-});
-
-Route::get('/feedback', function () {
-    return view('feedback');
-});
+Route::get('/feedback', [FeedbackController::class, 'feedbackView'])->name('feedback');
 // Profile Routes 
 
 Route::middleware('auth')->group(function () {
@@ -69,8 +59,14 @@ Route::get('/edit-post/{post}', [PostController::class, 'editPost'])->middleware
 Route::put('/edit-post/{post}', [PostController::class, 'updatePost'])->middleware(['auth', 'verified'])->name('edit-post');
 Route::delete('/delete-post/{post}', [PostController::class, 'deletePost'])->middleware(['auth', 'verified']);
 
-//Search in Dashboard
-Route::get('/search', [PostController::class, 'search']);
+//Search 
+Route::get('searchindashboard', [PostController::class, 'searchInDashboard']);
+Route::get('searchinyourposts', [PostController::class, 'searchInYourPosts']);
 
 //Feedback Routes
 Route::post('/feedback', [FeedbackController::class, 'sendFeedback']);
+
+//Bookmark
+Route::get('/bookmarks', [BookmarkController::class, 'bookmarks'])->name('bookmarks');
+Route::post('/post/{post}/bookmark', [BookmarkController::class, 'bookmark'])->name('post.bookmark');
+Route::delete('/post/{post}/unbookmark', [BookmarkController::class, 'unbookmark'])->name('post.unbookmark');
