@@ -8,11 +8,12 @@
     id="postedby"
     class="pt-20 px-4 flex h-40 border border-gray-200 dark:border-gray-700"
   >
-    @if($post->user->user_image) 
+    {{-- @if($post->user->user_image) 
     <img src="{{asset('storage/' . $post->user->user_image)}}" alt="user_image" class="w-12 h-12 rounded-full ml-3 mt-1">
     @else
     <x-avatar />
-    @endif
+    @endif --}}
+    <img src="{{$post->user->user_image ? asset('storage/' . $post->user->user_image) : asset('storage/images/avatar.png')}}" alt="user_image" class="w-12 h-12 ml-3 mt-1 rounded-full border border-gray-900 dark:border-blue-600">
     <div>
       <p class="ml-3 dark:text-white">{{$post->user->firstname . " " . $post->user->lastname}}</p>
       <p class="ml-3 dark:text-white">Posted on {{$post->created_at}}</p>

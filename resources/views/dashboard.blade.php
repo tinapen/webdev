@@ -56,7 +56,7 @@
           class="block max-w-sm bg-white border border-gray-200 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700 dark:text-white">
           <div class="relative overflow-hidden bg-cover bg-no-repeat">
             <a href="/post/{{$post->id}}">
-              <img class="rounded-t-3xl" src="{{$post->post_image ? asset('storage/' . $post->post_image) : asset('storage/images/default-image.png')}}" alt='post image'>
+              <img class="rounded-t-3xl h-[200px]" src="{{$post->post_image ? asset('storage/' . $post->post_image) : asset('storage/images/default-image.png')}}" alt='post image'>
             </a>
           </div>
           <ul class="w-full">
@@ -67,7 +67,7 @@
               $tags = (explode(' ', $str))
               @endphp
               @foreach($tags as $tag)
-              <a href="/dashboard/?tags={{$tag}}" id='tags' class="inline-flex p-2 w-fit rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-white text-xs">
+              <a href="/dashboard/?tags={{$tag}}" id='tags' class="inline-flex p-2 w-fit rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-white text-[11px]">
               {{$tag}}
               </a>
               @endforeach
@@ -77,14 +77,14 @@
               <p>Posted on {{$post->created_at}}</p>
             </li>
           </ul>
-          <div class="px-4 py-4 items-center">
+          <div class="px-4 py-2 items-center">
             <h5 class="mb-2 text-xl font-extrabold tracking-tight text-gray-900 dark:text-white h-16"> {{$post->post_title}}</h5>
-            <p class="text-sm text-justify text-gray-700 dark:text-gray-400 h-16">
+            <p class="text-sm text-justify text-gray-700 dark:text-gray-400 h-16 pt-3">
               {{Str::limit($post->post_content,150)}}
             </p>
           </div>
         
-          <div class="flex px-4 py-4">
+          <div class="flex px-4 py-4 mt-2" >
             <a
             href={{url('post', $post->id)}}
             class="content-end inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
