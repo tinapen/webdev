@@ -50,7 +50,7 @@
   </form>
     <x-flash-message />
       @if($posts->isNotEmpty())
-      <div class="grid grid-cols-4 gap-4 mb-4">
+      <div class="grid grid-cols-4 gap-7 mb-4">
         @foreach($posts as $post)
         <div
           class="block max-w-sm bg-white border border-gray-200 rounded-3xl shadow dark:bg-gray-800 dark:border-gray-700 dark:text-white">
