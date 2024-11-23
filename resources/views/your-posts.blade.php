@@ -108,7 +108,7 @@
             </a>
             <div class='w-20 ps-28'>
               @if (auth()->user()->bookmarkedPosts->contains($post->id))
-              <form action="{{ route('post.unbookmark', $post) }}" method="POST">
+              <form action="{{ route('post.unbookmark', ['post' => $post->id]) }}" method="POST">
                   @csrf
                   @method('DELETE')
                   <span type="button" class=" dark:hover:text-gray-500 cursor-pointer">
@@ -116,7 +116,7 @@
                   </span>
               </form>
               @else
-              <form action="{{ route('post.bookmark', $post) }}" method="POST">
+              <form action="{{ route('post.bookmark', ['post' => $post->id]) }}" method="POST">
                   @csrf
                   <span type="button" class="dark:border-gray-100 dark:hover:text-gray-500 cursor-pointer">
                     <x-bookmark-icon-unfilled />
