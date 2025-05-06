@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     //     //
     // }
 
+    //For Railway Deployment
     public function boot()
     {
         if ($this->app->environment('production')) {
