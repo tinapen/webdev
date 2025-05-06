@@ -18,16 +18,16 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    // public function boot(): void
-    // {
-    //     //
-    // }
-
-    //For Railway Deployment
-    public function boot()
+    public function boot(): void
     {
-        if ($this->app->environment('production')) {
-            URL::forceScheme('https');
-        }
+        //
     }
+
+    // //For Railway Deployment
+    // public function boot()
+    // {
+    //     if ($this->app->environment('production')) {
+    //         URL::forceScheme('https');
+    //     }
+    // }
 }
